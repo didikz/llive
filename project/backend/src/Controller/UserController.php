@@ -11,6 +11,9 @@ class UserController {
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
+        if ($result->num_rows === 0) {
+            throw new Exception("No user found with id $id");
+        }
         return $result->fetch_assoc();
     }
 

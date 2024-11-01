@@ -33,5 +33,11 @@ try {
             break;
     }
 } catch (Exception $e) {
-    echo $e->getMessage();
+    header("HTTP/1.1 422 Unprocessable Entity");
+    // CORS headers
+    header("Access-Control-Allow-Origin: *");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Max-Age: 86400');    // cache for 1 day
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(['error' => $e->getMessage()]);
 }
