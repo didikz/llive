@@ -10,6 +10,7 @@
 export default {
     data() {
         return {
+            userId: 1,
             user: {},
             errorMessage: ''
         };
@@ -19,7 +20,7 @@ export default {
     },
     methods: {
         fetchUserProfile() {
-            this.$http.get(`/api/user/${this.userId}`)
+            this.$http.get(`http://localhost:8081/api/user/${this.userId}`)
                 .then(response => {
                     this.user = response.data;
                 })
